@@ -55,9 +55,7 @@ class MainActivity : Activity() {
             addButton("Save PINs") {
                 val a = owner.text.toString()
                 val b = mom.text.toString()
-                if (a.length !in 4..12 || !a.all(Char::isDigit) ||
-                    b.length !in 4..12 || !b.all(Char::isDigit) || a == b
-                ) {
+                if (!PinRules.isValid(a) || !PinRules.isValid(b) || !PinRules.areDifferent(a, b)) {
                     toast("Use two different PINs, each 4–12 digits.")
                 } else {
                     pins.save(a, b)
